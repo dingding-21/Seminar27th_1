@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBlack"
+    tools:context=".ui.MainActivity">
+
+
+<!--    <ImageView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:src="@drawable/logo_2"-->
+<!--        tools:layout_editor_absoluteX="94dp"-->
+<!--        tools:layout_editor_absoluteY="60dp"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        android:layout_marginTop="50dp"-->
+<!--        />-->
+
+    <TextView
+        android:id="@+id/sopt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="50sp"
+        android:text="SOPT"
+        android:textColor="@color/colorYellow"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="40dp"
+        />
+
+    <TextView
+        android:id="@+id/id_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ID"
+        android:textSize="25sp"
+        android:textColor="@color/colorYellow"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/sopt"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="0dp"/>
+    <EditText
+        android:id="@+id/et_id_login"
+        android:layout_width = "0dp"
+        android:layout_height="wrap_content"
+        android:textColorHint="@color/colorLittleWhite"
+        android:hint="아이디를 입력해주세요."
+        android:textColor="@color/colorWhite"
+        app:layout_constraintTop_toBottomOf="@id/id_login"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        android:inputType="textPersonName"/>
+
+    <TextView
+        android:id="@+id/pwd_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="PASSWORD"
+        android:textSize="25sp"
+        android:textColor="@color/colorYellow"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/et_id_login"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="50dp"/>
+
+    <EditText
+        android:id="@+id/et_pwd_login"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textColorHint="@color/colorLittleWhite"
+        android:hint="비밀번호를 입력해주세요."
+        android:textColor="@color/colorWhite"
+        app:layout_constraintTop_toBottomOf="@id/pwd_login"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        android:inputType="textPassword"/>
+
+    <Button
+        android:id="@+id/login_btn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:background="@color/colorBlack"
+        android:text="Login"
+        android:textColor="@color/colorYellow"
+        app:layout_constraintEnd_toEndOf="@id/et_id_login"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@id/et_pwd_login"
+        app:layout_constraintTop_toBottomOf="@id/et_pwd_login" />
+
+    <Button
+        android:id="@+id/signup_btn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/signup"
+        android:textColor="@color/colorYellow"
+        android:background="@color/colorBlack"
+        app:layout_constraintStart_toStartOf="@id/login_btn"
+        app:layout_constraintEnd_toEndOf="@id/login_btn"
+        app:layout_constraintTop_toBottomOf="@id/login_btn"
+        android:layout_marginTop="10dp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
