@@ -12,22 +12,17 @@ import org.sophianing.seminar27th_1.fragment.ThirdFragment
 import kotlin.properties.Delegates
 
 class RecyclerActivity : AppCompatActivity() {
-    private lateinit var viewPaerAdapter: SampleViewPagerAdapter1
+    private lateinit var viewPagerAdapter: SampleViewPagerAdapter1
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_recycler)
 
-        viewPaerAdapter =
+        viewPagerAdapter =
             SampleViewPagerAdapter1(
                 supportFragmentManager
             )
-        viewPaerAdapter.fragments = listOf(
-            FirstFragment(),
-            SecondFragment(),
-            ThirdFragment()
-        )
-        sample_viewpager.adapter = viewPaerAdapter
+        sample_viewpager.adapter = viewPagerAdapter
 
 //        sample_tab.setupWithViewPager(sample_viewpager)
 //        sample_tab.apply {
@@ -40,7 +35,6 @@ class RecyclerActivity : AppCompatActivity() {
         //뷰페이지를 슬라이드 했을 때 그에 대응되는 하단 탭 변경
         sample_viewpager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrollStateChanged(state: Int) {}
-
 
             override fun onPageScrolled(
                 position: Int,

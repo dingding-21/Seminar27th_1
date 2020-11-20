@@ -10,7 +10,7 @@ import org.sophianing.seminar27th_1.R
 import org.sophianing.seminar27th_1.adapter.SampleViewPagerAdapter2
 
 class FirstFragment : Fragment() {
-    private lateinit var viewPaerAdapter2: SampleViewPagerAdapter2
+    private lateinit var viewPagerAdapter2: SampleViewPagerAdapter2
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -24,13 +24,9 @@ class FirstFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewPaerAdapter2 = SampleViewPagerAdapter2(childFragmentManager)
+        viewPagerAdapter2 = SampleViewPagerAdapter2(childFragmentManager)
 
-        viewPaerAdapter2.fragments = listOf(
-            Me_FirstFragment(),
-            Me_SecondFragment()
-        )
-        sample_viewpager_2.adapter = viewPaerAdapter2
+        sample_viewpager_2.adapter = viewPagerAdapter2
 
         sample_tab.setupWithViewPager(sample_viewpager_2)
         sample_tab.apply {
