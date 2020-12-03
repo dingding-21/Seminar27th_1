@@ -59,7 +59,6 @@ class MainActivity : BasicActivity() {
     }
 
     fun autoLogin() {
-
         if (sharedPreferences.getString("ID_REM", "").isNullOrBlank()
             || sharedPreferences.getString("PWD_REM", "").isNullOrBlank()
         ) {
@@ -98,6 +97,11 @@ class MainActivity : BasicActivity() {
                                     this@MainActivity, "${data.userName}님",
                                     Toast.LENGTH_SHORT
                                 ).show()
+                                editor.putString("USER_NAME", data.userName)
+                                editor.putString("ID_REM", et_id_login.toString())
+                                editor.putString("PWD_REM", et_pwd_login.toString())
+                                editor.apply()
+
                             }
                             val intent = Intent(this@MainActivity, RecyclerActivity::class.java)
                             startActivity(intent)
