@@ -303,3 +303,159 @@ override fun onCreateView(
 onCreateView에서 꼭 **setHasOptionsMenu(true)** 를 써야 fragment에서 menu를 사용할 수 있다.
 onCreateOptionsMenu에서 submenu를 생성해 linear와 grid menu를 만들고 
 onCreateViewHolder에서 num을 넘겨받아 그에 따른 linear, GridLayoutManager가 실행되도록 한다.
+
+
+
+##    :rose: Seminar6 - Server
+
+
+### :large_orange_diamond: 실행 모습
+![ezgif com-gif-maker (7)](https://user-images.githubusercontent.com/63945197/101118200-f6615680-362b-11eb-8919-0eae85b67d62.gif)
+![image](https://user-images.githubusercontent.com/63945197/101118385-4b9d6800-362c-11eb-89fc-ac96ffa134c6.png)![image](https://user-images.githubusercontent.com/63945197/101118475-74256200-362c-11eb-9a0e-96caffeff2c4.png)
+
+
+---
+####   :white_check_mark: 필수과제:  로그인 회원가입 서버 통신 수현 (20.11.29 완료)
+ 1. Retrofit Interface 설계
+
+ 2. 서버 Request / Response 객체 설계
+
+ 3. Retrofit Interface 실제 구현체 만들기
+
+ 4. Callback 등록하여 통신 요청
+
+    
+
+> Retrofit Interface 설계
+
+```kotlin
+ interface SampleService {  
+    @Headers("Content-Type:application/json")  
+    @POST("/users/signup")  
+    fun postSignup(  
+        @Body body: RequestSignupData  
+  ):Call<ResponseSignupData>  
+  
+    @Headers("Content-Type:application/json")  
+    @POST("/users/signin")  
+  
+    fun postLogin(  
+        @Body body: RequestLoginData  
+  ): Call<ResponseLoginData>  
+}
+```
+-- 식별 URL을 Interface로 설계
+
+- ---
+
+> 서버 Request / Response 객체 설계
+ - RequestSignupData 
+```kotlin
+data class RequestSignupData(  
+    val email : String,  
+    val password : String,  
+    val userName : String  
+)
+```
+
+ - ResponseSignupData 
+```kotlin
+data class ResponseSignupData(  
+    val data: Data,  
+    val message: String,  
+    val status: Int,  
+    val success: Boolean  
+) {  
+    data class Data(  
+        val email: String,  
+        val password: String,  
+        val userName: String  
+  )  
+}
+```
+ - RequestLoginData 
+```kotlin
+data class RequestLoginData(  
+    val email : String,  
+    val password : String  
+)
+```
+ - ResponseLoginData 
+```kotlin
+data class ResponseLoginData(  
+    val data: Data,  
+    val message: String,  
+    val status: Int,  
+    val success: Boolean  
+) {  
+    data class Data(  
+        val email: String,  
+        val password: String,  
+        val userName: String  
+  )  
+}
+```
+---
+> Retrofit Interface 실제 구현체 만들기
+
+
+```kotlin
+object SampleServiceImpl {  
+    private const val BASE_URL = "http://15.164.83.210:3000"  
+  
+  private val retrofit : Retrofit = Retrofit.Builder()  
+        .baseUrl(BASE_URL)  
+        .addConverterFactory(GsonConverterFactory.create())  
+        .build()  
+  
+    val service : SampleService = retrofit.create(SampleService::class.java)  
+}
+```
+-- 싱글톤으로 만드는 실제 구현체 
+ : : 객체는 하나만 생성하고 프로젝트 어디서나 사용할 수 있게 한다.
+
+-- -
+
+> Callback 등록하여 통신 요청
+- Call < Type> : 비동기적으로 Type을 받아오는 객체
+-  Callback < Type > : Type 객체를 받아왔을 때 프로그래머의 행동
+```kotlin
+val email = et_id_login.text.toString()  
+val password = et_pwd_login.text.toString()  
+  
+val call: Call<ResponseLoginData> = SampleServiceImpl.service.postLogin(  
+    RequestLoginData(email = email, password = password)  
+)  
+  
+call.enqueue(object : Callback<ResponseLoginData> {  
+    override fun onFailure(call: Call<ResponseLoginData>, t: Throwable) {  
+        // 통신 실패 로직  
+  }  
+  
+    // 통신 성공 로직  
+  override fun onResponse(  
+        call: Call<ResponseLoginData>,  
+        response: Response<ResponseLoginData>  
+    ) {  
+        response.takeIf { it.isSuccessful }  
+  ?.body()  
+            ?.let {  
+ it.data.let { data ->  
+  Toast.makeText(  
+                        this@MainActivity, "${data.userName}님",  
+                        Toast.LENGTH_SHORT  
+  ).show()  
+                    editor.putString("USER_NAME", data.userName)  
+                    editor.putString("ID_REM", et_id_login.toString())  
+                    editor.putString("PWD_REM", et_pwd_login.toString())  
+                    editor.apply()  
+  
+                }  
+  val intent = Intent(this@MainActivity, RecyclerActivity::class.java)  
+                startActivity(intent)  
+            } ?: showError(response.errorBody())  
+    }  
+}  
+)
+```
+-- 앞에서 만든 싱글톤 객체를 이용해서 Call 객체를 받아온 후 enqueue를 호출하여 실제 서버 통신을 비동기적으로 요청한다.
