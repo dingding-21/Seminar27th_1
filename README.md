@@ -344,7 +344,7 @@ onCreateViewHolder에서 num을 넘겨받아 그에 따른 linear, GridLayoutMan
   ): Call<ResponseLoginData>  
 }
 ```
--- 식별 URL을 Interface로 설계
+식별 URL을 Interface로 설계
 
 - ---
 
@@ -411,8 +411,8 @@ object SampleServiceImpl {
     val service : SampleService = retrofit.create(SampleService::class.java)  
 }
 ```
--- 싱글톤으로 만드는 실제 구현체 
- : : 객체는 하나만 생성하고 프로젝트 어디서나 사용할 수 있게 한다.
+싱글톤으로 만드는 실제 구현체 
+ :  객체는 하나만 생성하고 프로젝트 어디서나 사용할 수 있게 한다.
 
 -- -
 
@@ -458,4 +458,4 @@ call.enqueue(object : Callback<ResponseLoginData> {
 }  
 )
 ```
--- 앞에서 만든 싱글톤 객체를 이용해서 Call 객체를 받아온 후 enqueue를 호출하여 실제 서버 통신을 비동기적으로 요청한다.
+앞에서 만든 싱글톤 객체를 이용해서 Call 객체를 받아온 후 enqueue를 호출하여 실제 서버 통신을 비동기적으로 요청한다.
