@@ -4,7 +4,7 @@
 
 ## 목차
 
-- [1주차 과제](#cherry_blossom-seminar1----view와viewgroup)
+- [1주차 과제](#cherry_blossom-seminar1---view와viewgroup)
 
 - [2주차 과제](#sunflower-seminar2----recyclerview)
 
