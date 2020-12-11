@@ -4,13 +4,13 @@
 
 ## 목차
 
-- [1주차 과제](#Seminar1)
+- [1주차 과제](#seminar1)
 
-- [2주차 과제](#Seminar2)
+- [2주차 과제](#seminar2)
 
-- [3주차 과제](#Seminar3)
+- [3주차 과제](#seminar3)
 
-- [6주차 과제](#Seminar6)
+- [6주차 과제](#seminar6)
 
 
 
