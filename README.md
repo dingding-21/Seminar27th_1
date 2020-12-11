@@ -2,19 +2,22 @@
 
 
 
-## <목차>
+## 목차
 
-- [1주차 과제](#-cherry-blossom--seminar1----view-viewgroup)
+- [1주차 과제](#cherry_blossom-seminar1----view와viewgroup)
 
-- [2주차 과제](#-sunflower--seminar2----recyclerview)
+- [2주차 과제](#sunflower-seminar2----recyclerview)
 
-- [3주차 과제](#-tulip--seminar3---fragment--viewpager--------------------------------------------bottomnavigation--tablayout)
+- [3주차 과제](#tulip-seminar3---fragment-viewpager-------------------------------------bottomnavigation-tablayout)
 
-- [6주차 과제](#-rose--seminar6---server)
+- [6주차 과제](#rose-seminar6---server)
 
   
 
-## :cherry_blossom: Seminar1 -  View와ViewGroup
+## 🌸 Seminar1 - View와ViewGroup
+
+###  
+
 
 ### :large_orange_diamond: 실행 모습
 
