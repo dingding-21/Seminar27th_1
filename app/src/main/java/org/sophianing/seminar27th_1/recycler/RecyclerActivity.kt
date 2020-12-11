@@ -31,7 +31,6 @@ class RecyclerActivity : AppCompatActivity() {
 //            getTabAt(2)?.text = "세 번째"
 //        }
 
-
         //뷰페이지를 슬라이드 했을 때 그에 대응되는 하단 탭 변경
         sample_viewpager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrollStateChanged(state: Int) {}
@@ -49,7 +48,6 @@ class RecyclerActivity : AppCompatActivity() {
 
         })
 
-
         // 하단 탭을 눌렀을 때 뷰페이지 화면 변경
         sample_bottom_navi.setOnNavigationItemSelectedListener {
             var index by Delegates.notNull<Int>()
@@ -63,8 +61,5 @@ class RecyclerActivity : AppCompatActivity() {
             sample_viewpager.currentItem = index
             true
         }
-
-
     }
-
 }

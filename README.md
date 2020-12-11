@@ -306,6 +306,151 @@ onCreateViewHolder에서 num을 넘겨받아 그에 따른 linear, GridLayoutMan
 
 
 
+##    :tulip: Seminar3 - Fragment, ViewPager, 		                                    BottomNavigation, TabLayout
+
+
+### :large_orange_diamond: 실행 모습
+![ezgif com-gif-maker (9)](https://user-images.githubusercontent.com/63945197/101861358-350a8a00-3bb3-11eb-93c5-28d77d33e373.gif)
+
+---
+####   :white_check_mark: 필수과제:  프로필 화면 - 리사이클러뷰 화면 - 비어있는 화면 3개로 구성(20.11.02 완료)
+
+## Fragment
+ - 하나의 액티비티가 여러 개의 화면을 가질 수 있게 한다.
+ - 화면의 부위별로 따로 동작을 시키고 싶을 때 각각의 화면을 분할해서 독립적인 코드로 구성할 수 있도록 도와준다.
+ - Activity와의 차이: Activity는 안드로이드 시스템이 관리하고 Fragment는 액티비티가 관리한다.
+
+## ViewPager
+
+ - 하나의 화면 안에서 여러가지 화면을 슬라이드 형식으로 보여줄 때 
+ 사용한다.
+ - 하단 탭, 상단 탭과 연동하여 사용한다.
+
+## BottomNavigation
+-  하단 탭을 만들 때 사용한다.
+- ViewPager와 연동하여 화면들을 전환할 수 있다.
+-  화면이 3개 이상일 때 주로 사용한다.
+
+## TabLayout
+- 상단 탭을 만들 때 사용한다.
+- ViewPager와 연동하여 화면들을 전환할 수 있다.
+- BottomNavigationView에 비해서 위치 이동이 자유롭다.
+ViewPager와 연동하여 화면들을 전환할 수 있다.
+---
+>  First Fragment (프로필 화면)
+
+*- SampleViewPagerAdapter2.kt* 
+```kotlin  
+override fun getItem(position: Int): Fragment = when (position) {  
+	0 -> Me_FirstFragment()  
+	1 -> Me_SecondFragment()  
+	else -> throw IllegalStateException("Unexpected position $position")  
+}	
+override fun getCount(): Int = 3
+```
+ViewPager Adapter는 **두가지 메소드**를 반드시 **오버라이드** 해야 한다.
+
+ 1. getItem() 
+First Fragment 상단 탭에 들어갈 두개의 프래그먼트의 **position**을 지정한다.
+ 2. getCount() 
+ Adapter에서 만들 **페이지 수**를 반환한다.
+
+
+
+*- FirstFragment.kt* 
+
+```kotlin
+override fun onViewCreated(view: View, savedInstanceState: Bundle?) {  
+	super.onViewCreated(view, savedInstanceState)  
+	sharedPreferences = view.context.getSharedPreferences("SHARED_PREF", Context.MODE_PRIVATE)  
+	viewPagerAdapter2 = SampleViewPagerAdapter2(childFragmentManager)  
+  
+	sample_viewpager_2.adapter = viewPagerAdapter2  
+	me_name.text = sharedPreferences.getString("USER_NAME", "")  
+  
+	sample_tab.setupWithViewPager(sample_viewpager_2)  
+	sample_tab.apply {  
+		  getTabAt(0)?.text = "INFO"  
+		  getTabAt(1)?.text = "OTHER"  
+	}  
+}  
+
+```
+- supportFragmentManager : **Activity**에서 ViewPager를 사용하는 경우
+- childFragmentManager: **Fragment**에서 ViewPager를 사용하는 경우
+
+ViewPagerAdapter를 통해 하위 두 프래그먼트들을 FirstFragment의 상단 탭과 연동시켜 프로필 화면을 완성했다.
+
+---
+
+> BottomNavigation 과 3개의 Fragment 연동
+
+*- bottom_menu.xml* 
+
+```kotlin
+<item  
+  android:id="@+id/menu_me"  
+  android:icon="@drawable/ic_me"  
+  android:title="Me"/>  
+  
+  
+<item  
+  android:id="@+id/menu_portfolio"  
+  android:icon="@drawable/ic_portfolio"  
+  android:title="PortFolio"/>  
+  
+<item  
+  android:id="@+id/menu_setting"  
+  android:icon="@drawable/ic_setting"  
+  android:title="Setting"/>
+```
+BottomNavigation에 들어갈 **icon**을 가져온 후 **id**를 지정해준다.
+
+*- bottom_navi_color.xml*
+
+```kotlin
+<item android:color="#86C3BA" android:state_checked="true"/>  
+<item android:color="#9E9E9E" android:state_checked="false"/>
+```
+현재 보여주는 화면에 따라 **item의 상태와 색**을 지정한다.
+
+*- RecyclerActivity.kt*
+
+```kotlin
+ //뷰페이지를 슬라이드 했을 때 그에 대응되는 하단 탭 변경  
+  sample_viewpager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {  
+            override fun onPageScrollStateChanged(state: Int) {}    
+            override fun onPageScrolled(  
+                position: Int,  
+                positionOffset: Float,  
+                positionOffsetPixels: Int  
+			) {  
+            }  
+            override fun onPageSelected(position: Int) {  
+                sample_bottom_navi.menu.getItem(position).isChecked = true  
+			}    
+  })  
+```
+ViewPager의 화면전환을 감지하는 리스너 선언하고 ViewPager의 페이지 중 
+하나가 선택된 경우 그에 대응되는 하단 탭의 상태를 변화시킨다.
+```kotlin  
+  // 하단 탭을 눌렀을 때 뷰페이지 화면 변경  
+  sample_bottom_navi.setOnNavigationItemSelectedListener {  
+	  var index by Delegates.notNull<Int>() 
+	            when (it.itemId) {  
+	                R.id.menu_me -> index = 0  
+					R.id.menu_portfolio -> index = 1  
+				    R.id.menu_setting -> index = 2  
+				}  
+	            sample_viewpager.currentItem = index  
+				true  
+  }  
+```
+각 탭을 클릭했을 때 이벤트 처리 Listener 설정하고 bottom_menu.xml에서 
+지정한 Item id값을 가져와 viewpager의 currentItem에 넣는다.
+
+
+
 ##    :rose: Seminar6 - Server
 
 

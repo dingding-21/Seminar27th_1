@@ -30,7 +30,7 @@ class FirstFragment : Fragment() {
         viewPagerAdapter2 = SampleViewPagerAdapter2(childFragmentManager)
 
         sample_viewpager_2.adapter = viewPagerAdapter2
-        me_name.text = sharedPreferences.getString("USER_NAME","" )
+        me_name.text = sharedPreferences.getString("USER_NAME", "")
 
         sample_tab.setupWithViewPager(sample_viewpager_2)
         sample_tab.apply {
@@ -38,5 +38,4 @@ class FirstFragment : Fragment() {
             getTabAt(1)?.text = "OTHER"
         }
     }
-
 }

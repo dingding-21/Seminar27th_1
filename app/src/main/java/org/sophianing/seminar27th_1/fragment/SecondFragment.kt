@@ -13,7 +13,7 @@ import org.sophianing.seminar27th_1.adapter.SampleAdapter
 import org.sophianing.seminar27th_1.data.SampleData
 
 class SecondFragment : Fragment() {
-    private lateinit var sampleAdapter : SampleAdapter
+    private lateinit var sampleAdapter: SampleAdapter
     //lateinit var editor: SharedPreferences.Editor
 
     override fun onCreateView(
@@ -21,7 +21,7 @@ class SecondFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view =  inflater.inflate(R.layout.fragment_second, container, false)
+        val view = inflater.inflate(R.layout.fragment_second, container, false)
         setHasOptionsMenu(true)
         return view
     }
@@ -29,7 +29,7 @@ class SecondFragment : Fragment() {
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
 
-    //    menu?.add(Menu.NONE, Menu.FIRST + 1, Menu.NONE, "logout")
+        //    menu?.add(Menu.NONE, Menu.FIRST + 1, Menu.NONE, "logout")
 //        menu?.add(Menu.NONE, Menu.FIRST + 2, Menu.NONE, "코드메뉴2")
 
         var sub: Menu? = menu.addSubMenu("sort")
@@ -39,20 +39,20 @@ class SecondFragment : Fragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-         when(item.itemId){
+        when (item.itemId) {
 //           Menu.FIRST + 1 -> {
 //               editor.clear()
 //               editor.commit()
 //           }
-           Menu.FIRST + 3 -> {
-              sampleAdapter.NUM = 1
-               main_rcv.layoutManager = LinearLayoutManager(context)
-           }
-           Menu.FIRST + 4 ->{
-               sampleAdapter.NUM= 2
-               main_rcv.layoutManager = GridLayoutManager(context, 2)
-           }
-       }
+            Menu.FIRST + 3 -> {
+                sampleAdapter.NUM = 1
+                main_rcv.layoutManager = LinearLayoutManager(context)
+            }
+            Menu.FIRST + 4 -> {
+                sampleAdapter.NUM = 2
+                main_rcv.layoutManager = GridLayoutManager(context, 2)
+            }
+        }
 
         return super.onOptionsItemSelected(item)
     }
@@ -109,7 +109,6 @@ class SecondFragment : Fragment() {
 //        changeGrid()
 
     }
-
 
 
 //   fun changeGrid(){
