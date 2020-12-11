@@ -14,9 +14,7 @@
 
   
 
-## 🌸 Seminar1 - View와ViewGroup
-
-###  
+## :cherry_blossom: Seminar1 - View와ViewGroup
 
 
 ### :large_orange_diamond: 실행 모습
