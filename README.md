@@ -1,3 +1,19 @@
+# :star2:27th Sopt Android :star2:
+
+
+
+## 목차
+
+- [1주차 과제](#Seminar1)
+
+- [2주차 과제](#Seminar2)
+
+- [3주차 과제](#Seminar3)
+
+- [6주차 과제](#Seminar6)
+
+
+
 ##  :cherry_blossom: Seminar1 -  View와ViewGroup
 
 
@@ -138,7 +154,7 @@ apply( )를 해주면 데이터 저장이 완료된다. **(필수!)**
 
 > 
 
-##  :sunflower: Seminar2-  RecyclerView
+##  :sunflower: Seminar2 -  RecyclerView
 
 
 ### :large_orange_diamond: 실행 모습
@@ -340,6 +356,7 @@ ViewPager와 연동하여 화면들을 전환할 수 있다.
 >  First Fragment (프로필 화면)
 
 *- SampleViewPagerAdapter2.kt* 
+
 ```kotlin  
 override fun getItem(position: Int): Fragment = when (position) {  
 	0 -> Me_FirstFragment()  
